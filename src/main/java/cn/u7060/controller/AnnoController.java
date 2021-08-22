@@ -14,7 +14,7 @@ public class AnnoController {
     @RequestMapping("/list")
     public ModelAndView list(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("");//设置视图位置
+        mv.setViewName("anno/list3");//设置视图位置
         System.out.println("b");
         return mv;
     }
