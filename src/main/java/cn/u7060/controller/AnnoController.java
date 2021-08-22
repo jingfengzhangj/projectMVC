@@ -1,10 +1,14 @@
 package cn.u7060.controller;
 
 import cn.u7060.domain.User;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Date;
 
 @Controller
 @RequestMapping("anno")
@@ -63,5 +67,30 @@ public class AnnoController {
     @GetMapping("param4/{age}")
     public String listParam4(@PathVariable("age") String age){
         return "anno/list3";
+    }
+    /*@InitBinder  //日期处理方式1
+    public void initBinderDateType(WebDataBinder binder){
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        sdf.applyPattern("yyyy-MM-dd");
+        binder.registerCustomEditor(java.util.Date.class,new CustomDateEditor(sdf,true));
+    }*/
+
+//    注解@JsonFormat主要是后台到前台的时间格式的转换
+//    注解@DataFormAT主要是前后到后台的时间格式的转换
+    @GetMapping("date1")
+    public ModelAndView date1( @DateTimeFormat(pattern = "yyyy-MM-dd")  Date time){
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("time",time);
+        mv.setViewName("anno/list3");
+        return mv;
+    }
+
+
+    @PostMapping("upload1")
+    public ModelAndView update1(MultipartFile file){
+        System.out.println(file.getOriginalFilename());
+        System.out.println(file.getSize());
+        return null;
+//        Files.copy();//用于下载
     }
 }
