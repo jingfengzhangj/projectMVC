@@ -19,7 +19,7 @@ public class AnnoController {
     public ModelAndView list(){
         ModelAndView mv = new ModelAndView();
         mv.setViewName("anno/list3");//设置视图位置
-        System.out.println("b");
+        System.out.println("a");
         return mv;
     }
 
